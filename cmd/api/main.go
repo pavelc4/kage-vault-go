@@ -2,43 +2,25 @@ package main
 
 import (
 	"log"
-	"time"
 
 	"github.com/gofiber/fiber/v2"
-)
-
-var (
-	startTime = time.Now()
-	version   = "1.0.0"
-	service   = "KageVault API"
+	"github.com/pavelc4/kage-vault-go.git/config"
+	"github.com/pavelc4/kage-vault-go.git/internal/routes"
+	"github.com/pavelc4/kage-vault-go.git/pkg/response"
 )
 
 func main() {
+	cfg := config.Load()
 	app := fiber.New(fiber.Config{
-		AppName: service + " v" + version,
+		AppName: cfg.Service,
 	})
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"success":   true,
-			"service":   service,
-			"version":   version,
-			"message":   "API is running",
-			"timestamp": time.Now().Format(time.RFC3339),
-		})
+	routes.Setup(app, cfg)
+
+	app.Use(func(c *fiber.Ctx) error {
+		return response.Error(c, 404, "Route not found")
 	})
 
-	app.Get("/api/health", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"success":   true,
-			"service":   service,
-			"version":   version,
-			"status":    "healthy",
-			"uptime":    time.Since(startTime).String(),
-			"timestamp": time.Now().Format(time.RFC3339),
-		})
-	})
-
-	log.Println("🚀", service, "running at http://localhost:3000")
-	log.Fatal(app.Listen(":3000"))
+	log.Printf("%s running on port %s", cfg.Service, cfg.Port)
+	log.Fatal(app.Listen(":" + cfg.Port))
 }
