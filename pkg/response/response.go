@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/pavelc4/kage-vault-go.git/internal/models"
+	"github.com/pavelc4/kage-vault-go/internal/models"
 )
 
 func Success(c *fiber.Ctx, data interface{}) error {

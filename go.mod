@@ -1,4 +1,4 @@
-module github.com/pavelc4/kage-vault-go.git
+module github.com/pavelc4/kage-vault-go
 
 go 1.25.4
 

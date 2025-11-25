@@ -4,9 +4,9 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/pavelc4/kage-vault-go.git/config"
-	"github.com/pavelc4/kage-vault-go.git/internal/routes"
-	"github.com/pavelc4/kage-vault-go.git/pkg/response"
+	"github.com/pavelc4/kage-vault-go/config"
+	"github.com/pavelc4/kage-vault-go/internal/routes"
+	"github.com/pavelc4/kage-vault-go/pkg/response"
 )
 
 func main() {
