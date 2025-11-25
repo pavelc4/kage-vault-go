@@ -5,6 +5,7 @@ type ApiResponse struct {
 	Data      interface{}  `json:"data,omitempty"`
 	Error     *ErrorDetail `json:"error,omitempty"`
 	Timestamp string       `json:"timestamp"`
+	Message   string       `json:"message,omitempty"`
 }
 
 type ErrorDetail struct {

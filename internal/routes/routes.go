@@ -5,6 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/pavelc4/kage-vault-go/config"
+	"github.com/pavelc4/kage-vault-go/internal/handlers"
 	"github.com/pavelc4/kage-vault-go/pkg/response"
 )
 
@@ -26,4 +27,5 @@ func Setup(app *fiber.App, cfg *config.Config) {
 			"service": cfg.Service,
 		})
 	})
+	api.Get("/password", handlers.GeneratePasswordHandler)
 }
